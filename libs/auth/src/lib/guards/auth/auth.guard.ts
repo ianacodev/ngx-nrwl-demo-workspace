@@ -2,13 +2,15 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-// services
-import { AuthService } from '../../services/auth.service';
+// ngrx
+import { Store, select } from '@ngrx/store';
+import { AuthState } from '../../+state/auth.reducer';
 
 export function authGuard(): Observable<boolean> {
-  const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
-  return authService.user$.pipe(
+  const store: Store<AuthState> = inject(Store);
+  return store.pipe(
+    select((state) => state.auth.user),
     map((user) => {
       if (user) {
         return true;

@@ -10,6 +10,10 @@ import { LoginComponent } from './containers/login/login.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 // interceptors
 import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import * as fromAuth from './+state/auth.reducer';
+import { AuthEffects } from './+state/auth.effects';
 
 @NgModule({
   imports: [
@@ -19,6 +23,8 @@ import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
+    StoreModule.forFeature(fromAuth.AUTH_FEATURE_KEY, fromAuth.authReducer),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: [LoginComponent, LoginFormComponent],
   providers: [
