@@ -1,19 +1,38 @@
 <mat-card class="login-form">
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
-    <form class="login-form__form" fxLayout="column">
+    <form class="login-form__form" [formGroup]="formGroup" (ngSubmit)="login()">
       <mat-form-field>
-        <input matInput placeholder="username" type="text" #username />
+        <input
+          matInput
+          placeholder="username"
+          type="text"
+          formControlName="username"
+        />
+        <mat-error
+          *ngIf="
+            formGroup.get('username')?.hasError('required') && submittedStatus
+          "
+        >
+          username required
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="password" type="text" #password />
+        <input
+          matInput
+          placeholder="password"
+          type="text"
+          formControlName="password"
+        />
+        <mat-error
+          *ngIf="
+            formGroup.get('password')?.hasError('required') && submittedStatus
+          "
+        >
+          password required
+        </mat-error>
       </mat-form-field>
+      <button mat-raised-button type="submit">login</button>
     </form>
-    <button
-      mat-raised-button
-      (click)="login({ username: username.value, password: password.value })"
-    >
-      login
-    </button>
   </mat-card-content>
 </mat-card>

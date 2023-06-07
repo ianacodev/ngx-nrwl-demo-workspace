@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 // libs
 import { MaterialModule } from '@demo-app/material';
 // components
@@ -15,6 +16,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     RouterModule,
     HttpClientModule,
     MaterialModule,
+    ReactiveFormsModule,
   ],
   declarations: [LoginComponent, LoginFormComponent],
 })

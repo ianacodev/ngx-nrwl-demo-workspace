@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // models
 import { Authenticate } from '@demo-app/data-models';
 
@@ -9,12 +10,25 @@ import { Authenticate } from '@demo-app/data-models';
 })
 export class LoginFormComponent {
   @Output() handleSubmit = new EventEmitter<Authenticate>();
+  submittedStatus = false;
+  formGroup = this.fb.group({
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]],
+  });
+
+  constructor(private fb: FormBuilder) {}
 
   /**
    * login
    * @param authentication
    */
-  login(authenticate: Authenticate) {
-    this.handleSubmit.emit(authenticate);
+  login() {
+    this.submittedStatus = true;
+    console.log('ere', this.submittedStatus, this.formGroup);
+    const { valid, value } = this.formGroup;
+    if (valid) {
+      this.handleSubmit.emit(value as Authenticate);
+      this.submittedStatus = false;
+    }
   }
 }
