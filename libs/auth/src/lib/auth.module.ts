@@ -2,12 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+// libs
+import { MaterialModule } from '@demo-app/material';
 // components
 import { LoginComponent } from './containers/login/login.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, RouterModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    RouterModule,
+    HttpClientModule,
+    MaterialModule,
+  ],
   declarations: [LoginComponent, LoginFormComponent],
 })
 export class AuthModule {}
