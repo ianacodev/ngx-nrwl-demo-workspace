@@ -1,8 +1,13 @@
 .login-form {
   padding: 1rem;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 
   &__title {
     font-size: 1rem;
+    margin: 0.5rem 0;
   }
 
   &__content {
@@ -15,4 +20,8 @@
     align-items: flex-start;
     justify-content: center;
   }
+}
+
+.mat-mdc-form-field {
+  width: 100%;
 }

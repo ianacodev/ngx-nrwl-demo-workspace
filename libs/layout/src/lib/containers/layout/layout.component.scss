@@ -1,8 +1,19 @@
-.toolbar {
-  display: flex;
-  flex-direction: row;
+.layout {
+  &__toolbar {
+    display: flex;
+    flex-direction: row;
+
+    &-nav--right {
+      margin-left: auto;
+    }
+  }
+
+  &__content {
+    background-color: #dddddd;
+    padding: 1rem;
+  }
 }
 
-.right-nav {
-  margin-left: auto;
+.mdc-button {
+  text-transform: capitalize;
 }

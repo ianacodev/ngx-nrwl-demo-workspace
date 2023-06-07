@@ -1,25 +1,30 @@
-<mat-toolbar class="toolbar" color="primary">
-  <span>Customer Portal</span>
-  <div class="right-nav">
-    <span *ngIf="user$ | async as user">
-      <button mat-button>{{ (user$ | async)?.username }}</button>
-      <button
-        mat-button
-        [routerLink]="['/products']"
-        routerLinkActive="router-link-active"
-      >
-        Products
-      </button>
-      <button mat-button>Logout</button>
-    </span>
-    <span *ngIf="!!(user$ | async) === false">
-      <span
-        mat-button
-        [routerLink]="['/auth/login']"
-        routerLinkActive="router-link-active"
-        >Login</span
-      >
-    </span>
+<div class="layout">
+  <mat-toolbar class="layout__toolbar" color="primary">
+    <span>Customer Portal</span>
+    <div class="layout__toolbar-nav--right">
+      <div *ngIf="user$ | async as user; else login">
+        <button mat-button>{{ (user$ | async)?.username }}</button>
+        <button
+          mat-button
+          [routerLink]="['/products']"
+          routerLinkActive="router-link-active"
+        >
+          Products
+        </button>
+        <button mat-button>Logout</button>
+      </div>
+      <ng-template #login>
+        <button
+          mat-button
+          [routerLink]="['/auth/login']"
+          routerLinkActive="router-link-active"
+        >
+          Login
+        </button>
+      </ng-template>
+    </div>
+  </mat-toolbar>
+  <div class="layout__content">
+    <ng-content></ng-content>
   </div>
-</mat-toolbar>
-<ng-content></ng-content>
+</div>

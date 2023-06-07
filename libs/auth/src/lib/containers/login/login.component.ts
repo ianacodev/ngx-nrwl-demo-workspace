@@ -25,7 +25,6 @@ export class LoginComponent {
    * @param authenticate
    */
   login(authenticate: Authenticate) {
-    console.log(authenticate);
     this.store.dispatch(authActions.login({ payload: authenticate }));
   }
 }

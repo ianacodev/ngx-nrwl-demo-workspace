@@ -16,14 +16,17 @@ export class AuthEffects {
     private router: Router
   ) {}
 
+  /**
+   * login
+   */
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.login),
       fetch({
-        run: (action) => {
+        run: ({ payload }) => {
           return this.authService
-            .login(action.payload)
-            .pipe(map((payload) => AuthActions.loginSuccess({ payload })));
+            .login(payload)
+            .pipe(map((user) => AuthActions.loginSuccess({ payload: user })));
         },
         onError: (action, error) => {
           return AuthActions.loginFailure(error);
@@ -32,13 +35,18 @@ export class AuthEffects {
     )
   );
 
+  /**
+   * navigate to profile
+   */
   navigateToProfile$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(AuthActions.AuthActionTypes.LoginSuccess),
-        map((action: AuthActionTypes.LoginSuccess) => action),
+        ofType(AuthActions.loginSuccess),
+        map((action) => action),
         tap(() => this.router.navigate(['/products']))
       ),
-    { dispatch: false }
+    {
+      dispatch: false,
+    }
   );
 }
