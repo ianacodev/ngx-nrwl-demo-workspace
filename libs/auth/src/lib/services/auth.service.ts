@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 // models
 import { Authenticate } from '@demo-app/data-models';
 import { User } from '@demo-app/data-models';
@@ -9,6 +10,9 @@ import { User } from '@demo-app/data-models';
   providedIn: 'root',
 })
 export class AuthService {
+  private userSubject$ = new BehaviorSubject<User | null>(null);
+  user$ = this.userSubject$.asObservable();
+
   constructor(private http: HttpClient) {}
 
   /**

@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  font-family: sans-serif;
+  min-width: 300px;
+  max-width: 600px;
+  margin: 50px auto;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 1px 1px 8px #ddd;
+}
+
+.gutter-left {
+  margin-left: 9px;
+}

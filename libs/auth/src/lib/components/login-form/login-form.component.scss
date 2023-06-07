@@ -1,4 +1,14 @@
 .login-form {
+  padding: 1rem;
+
+  &__title {
+    font-size: 1rem;
+  }
+
+  &__content {
+    padding: 0;
+  }
+
   &__form {
     display: flex;
     flex-direction: column;

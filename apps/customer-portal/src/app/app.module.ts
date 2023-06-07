@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { appRoutes } from './app.routes';
 // libs
 import { AuthModule } from '@demo-app/auth';
+import { LayoutModule } from '@demo-app/layout';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { AuthModule } from '@demo-app/auth';
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
     BrowserAnimationsModule,
     AuthModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
