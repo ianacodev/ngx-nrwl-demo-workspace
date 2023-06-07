@@ -10,6 +10,7 @@ import { AuthModule } from '@demo-app/auth';
 import { LayoutModule } from '@demo-app/layout';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     ),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [],
   bootstrap: [AppComponent],
