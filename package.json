@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "nxbuild": "nx build --prod customer-portal",
     "server": "ts-node ./server/server.ts"
   },
   "private": true,
