@@ -7,48 +7,44 @@ import { User } from '@demo-app/data-models';
 export const AUTH_FEATURE_KEY = 'auth';
 
 export interface AuthData {
+  user: User | null;
   loading: boolean;
-  user: User;
-  error: Error;
+  loaded: boolean;
+  error: any;
 }
 
 export interface AuthState {
   readonly auth: AuthData;
 }
 
-export interface State extends EntityState<AuthEntity> {
-  selectedId?: string | number;
-  loaded: boolean;
-  error?: string | null;
-}
-
 export interface AuthPartialState {
-  readonly [AUTH_FEATURE_KEY]: State;
+  readonly [AUTH_FEATURE_KEY]: AuthState;
 }
 
-export const authAdapter: EntityAdapter<AuthEntity> =
-  createEntityAdapter<AuthEntity>();
-
-export const initialState: State = authAdapter.getInitialState({
-  action: AuthActions,
+export const initialState: AuthData = {
+  user: null,
+  loading: false,
   loaded: false,
-});
+  error: null,
+};
 
-const authReducer = createReducer(
+export const authReducer = createReducer(
   initialState,
-  on(AuthActions.login, (state) => ({ ...state, loading: true })),
-  on(AuthActions.loginSuccess, (state) => ({
+  on(AuthActions.login, (state) => ({
     ...state,
-    user: AuthActions.loginSuccess,
+    loading: true,
+    loaded: false,
+  })),
+  on(AuthActions.loginSuccess, (state, action) => ({
+    ...state,
+    user: action.payload,
     loading: false,
+    loaded: true,
   })),
   on(AuthActions.loginFailure, (state) => ({
     ...state,
     user: null,
     loading: false,
+    loaded: false,
   }))
 );
-
-export function reducer(state: State | undefined, action: Action) {
-  return authReducer(state, action);
-}

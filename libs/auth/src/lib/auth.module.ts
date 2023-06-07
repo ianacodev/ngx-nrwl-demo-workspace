@@ -23,7 +23,7 @@ import { AuthEffects } from './+state/auth.effects';
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
-    StoreModule.forFeature(fromAuth.AUTH_FEATURE_KEY, fromAuth.reducer),
+    StoreModule.forFeature(fromAuth.AUTH_FEATURE_KEY, fromAuth.authReducer),
     EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: [LoginComponent, LoginFormComponent],

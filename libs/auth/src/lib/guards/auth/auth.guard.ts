@@ -10,9 +10,9 @@ export function authGuard(): Observable<boolean> {
   const router: Router = inject(Router);
   const store: Store<AuthState> = inject(Store);
   return store.pipe(
-    select((state) => state.auth.user),
-    map((user) => {
-      if (user) {
+    select((state) => state),
+    map((state) => {
+      if (state.auth.user) {
         return true;
       } else {
         router.navigate([`/auth/login`]);
