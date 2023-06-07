@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 // libs
 import { MaterialModule } from '@demo-app/material';
 // components
 import { LoginComponent } from './containers/login/login.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+// interceptors
+import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 
 @NgModule({
   imports: [
@@ -19,5 +21,12 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     ReactiveFormsModule,
   ],
   declarations: [LoginComponent, LoginFormComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class AuthModule {}
